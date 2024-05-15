@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Examen.ApplicationCore.Domain.Compte>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="index">
+<fieldset>
+    <legend> Recherche</legend>
+  <select class="form-control" name="TypeCompte"
+                asp-items="Html.GetEnumSelectList<Examen.ApplicationCore.Domain.TypeCompte>() ">
+                    <option>selectionner pour filtrer</option>
+
+                </select> <input type="submit" value="Serach" />
+   
+</fieldset>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroCompte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proprietaire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BanqueFk)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroCompte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solde)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proprietaire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BanqueFk)
+            </td>
+            <td>
+                @Html.ActionLink(linkText: "Modifier Banque", actionName: "Edit", controllerName: "Banque", routeValues: new { id = item.BanqueFk }, htmlAttributes: null) |
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
